@@ -1,13 +1,276 @@
-<html>
-<head><title>404 Not Found</title></head>
-<body>
-<center><h1>404 Not Found</h1></center>
-<hr><center>Vilinko</center>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Vilinko Studio 反馈中心</title>
+   <script src="https://cdn.tailwindcss.com"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+   <style>
+       * {
+           -webkit-user-select: none;
+           -moz-user-select: none;
+           -ms-user-select: none;
+           user-select: none;
+       }
+
+       input, textarea {
+           -webkit-user-select: none;
+           -moz-user-select: none;
+           -ms-user-select: none;
+           user-select: none;
+       }
+
+       body {
+           font-family: 'Noto Sans SC', sans-serif;
+           background-color: #f3f4f6;
+           background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
+           background-size: 20px 20px;
+           min-height: 100vh;
+           display: flex;
+           flex-direction: column;
+       }
+     
+       .vui-control {
+           transition: all 0.2s ease;
+           position: relative;
+       }
+
+       .vui-control-base {
+           box-shadow: 
+               inset 0 -1px 0 0 rgba(0, 0, 0, 0.06), 
+               inset 0 -2px 0 0 rgba(0, 0, 0, 0.02);
+       }
+
+       .vui-control-primary {
+           box-shadow: 
+               inset 0 -1.5px 0 0 rgba(0, 0, 0, 0.15), 
+               inset 0 -3px 0 0 rgba(0, 0, 0, 0.05);
+       }
+
+       .vui-control:active:not(:disabled) {
+           transform: translateY(1px);
+           box-shadow: inset 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+       }
+
+       .custom-scrollbar::-webkit-scrollbar {
+           width: 6px;
+       }
+       .custom-scrollbar::-webkit-scrollbar-track {
+           background: #f1f1f1;
+       }
+       .custom-scrollbar::-webkit-scrollbar-thumb {
+           background: #d1d5db;
+           border-radius: 12px;
+       }
+       .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+           background: #9ca3af;
+       }
+
+       .service-card {
+           transition: all 0.3s ease;
+           cursor: pointer;
+           border-width: 2px;
+           border-radius: 12px !important;
+           box-shadow: none !important;
+       }
+       .service-card:hover {
+           border-color: #5279fb;
+           box-shadow: none !important;
+       }
+
+       .unavailable-modal {
+           position: fixed;
+           inset: 0;
+           background-color: rgba(0, 0, 0, 0.6);
+           -webkit-backdrop-filter: blur(4px);
+           backdrop-filter: blur(4px);
+           display: flex;
+           align-items: center;
+           justify-content: center;
+           z-index: 9999;
+           opacity: 0;
+           pointer-events: none;
+           transition: opacity 0.3s ease;
+       }
+       .unavailable-modal.active {
+           opacity: 1;
+           pointer-events: all;
+       }
+       .unavailable-content {
+           background-color: white;
+           border-radius: 12px;
+           padding: 2rem;
+           max-width: 90%;
+           width: 350px;
+           text-align: center;
+           box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+           transform: scale(0.95);
+           transition: transform 0.3s ease;
+       }
+       .unavailable-modal.active .unavailable-content {
+           transform: scale(1);
+       }
+
+       .copyright-footer {
+           margin-top: auto;
+           padding: 2rem 0;
+           text-align: center;
+           width: 100%;
+       }
+       .copyright-text {
+           font-size: 0.875rem;
+           color: #6b7280;
+           font-weight: 400;
+       }
+
+       .rounded-2xl {
+           border-radius: 12px !important;
+       }
+       .rounded-xl {
+           border-radius: 12px !important;
+       }
+       .rounded-lg {
+           border-radius: 12px !important;
+       }
+       .rounded-full {
+           border-radius: 50% !important;
+       }
+   </style>
+</head>
+<body class="flex items-center justify-center p-4 sm:p-6" 
+      oncontextmenu="return false" 
+      onselectstart="return false" 
+      ondragstart="return false">
+
+   <div class="w-full max-w-5xl px-4">
+       <div class="text-center mb-10">
+           <h1 class="text-3xl font-bold text-gray-800 mb-3 tracking-tight">Vilinko 反馈中心</h1>
+           <p class="text-sm text-gray-500 leading-relaxed max-w-xl mx-auto">
+               选择以下方式获取帮助或反馈问题
+           </p>
+       </div>
+
+       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+           <!-- 查阅文档 -->
+           <div class="service-card w-full bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100 relative p-8 flex flex-col items-center text-center" onclick="handleServiceClick('docs')">
+               <div class="w-16 h-16 rounded-full bg-blue-50 flex items-center justify-center mb-5">
+                   <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-[#5279fb]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                   </svg>
+               </div>
+               <h3 class="text-xl font-bold text-gray-800 mb-2">查阅文档</h3>
+               <p class="text-sm text-gray-500">
+                   浏览详细的产品文档和使用指南，快速解决常见问题
+               </p>
+           </div>
+
+           <!-- 微信公众号 -->
+           <div class="service-card w-full bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100 relative p-8 flex flex-col items-center text-center" onclick="handleServiceClick('wechat')">
+               <div class="w-16 h-16 rounded-full bg-green-50 flex items-center justify-center mb-5">
+                   <i class="fa-brands fa-weixin text-[#22c55e] text-2xl"></i>
+               </div>
+               <h3 class="text-xl font-bold text-gray-800 mb-2">微信公众号</h3>
+               <p class="text-sm text-gray-500">
+                   关注官方公众号，获取最新资讯和人工服务支持
+               </p>
+           </div>
+
+           <!-- 邮箱反馈 -->
+           <div class="service-card w-full bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100 relative p-8 flex flex-col items-center text-center" onclick="handleServiceClick('email')">
+               <div class="w-16 h-16 rounded-full bg-purple-50 flex items-center justify-center mb-5">
+                   <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-[#a855f7]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                   </svg>
+               </div>
+               <h3 class="text-xl font-bold text-gray-800 mb-2">邮箱反馈</h3>
+               <p class="text-sm text-gray-500">
+                   发送详细问题描述至官方邮箱
+               </p>
+           </div>
+       </div>
+   </div>
+
+   <!-- 页脚版权信息 -->
+   <div class="copyright-footer">
+       <p class="copyright-text" id="copyrightText"></p>
+   </div>
+
+   <!-- 服务不可用弹窗 -->
+   <div id="unavailableModal" class="unavailable-modal">
+       <div class="unavailable-content">
+           <div class="mb-4">
+               <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-amber-500 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+               </svg>
+           </div>
+           <h3 class="text-xl font-bold text-gray-800 mb-2">服务暂时不可用</h3>
+           <p class="text-gray-500 mb-6">该服务正在维护中，请稍后再试</p>
+           <!-- <button type="button" onclick="closeUnavailableModal()" class="inline-block px-6 py-2.5 bg-[#5279fb] text-white font-medium rounded-xl hover:bg-[#4066e0] transition-colors">
+               我知道了
+           </button> -->
+       </div>
+   </div>
+
+   <script>
+       const serviceStatus = {
+           docs: "run",      // 查阅文档
+           wechat: "stop",   // 微信公众号
+           email: "run"      // 邮箱反馈
+       };
+
+       const serviceLinks = {
+           docs: "https://docs.vilinko.com",
+           wechat: "#",
+           email: "https://vilinkostudio.github.io/support/own/email.html"
+       };
+
+       document.addEventListener('DOMContentLoaded', function() {
+           const currentYear = new Date().getFullYear();
+           document.getElementById('copyrightText').textContent = `Copyright © ${currentYear} Vilinko Studio`;
+           
+           document.addEventListener('keydown', function(e) {
+               if ((e.ctrlKey && (e.key === 'c' || e.key === 'x' || e.key === 'v' || e.key === 'a')) || 
+                   (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'i'))) {
+                   e.preventDefault();
+                   return false;
+               }
+           });
+
+           document.addEventListener('copy', function(e) {
+               e.preventDefault();
+               return false;
+           });
+
+           document.addEventListener('cut', function(e) {
+               e.preventDefault();
+               return false;
+           });
+
+           document.addEventListener('paste', function(e) {
+               e.preventDefault();
+               return false;
+           });
+       });
+
+       function handleServiceClick(serviceKey) {
+           if (serviceStatus[serviceKey] === "stop") {
+               document.getElementById('unavailableModal').classList.add('active');
+           } else {
+               window.location.href = serviceLinks[serviceKey];
+           }
+       }
+
+       function closeUnavailableModal() {
+           document.getElementById('unavailableModal').classList.remove('active');
+       }
+
+       document.getElementById('unavailableModal').addEventListener('click', function(e) {
+           if (e.target === this) {
+               closeUnavailableModal();
+           }
+       });
+   </script>
 </body>
 </html>
-<!-- a padding to disable MSIE and Chrome friendly error page -->
-<!-- a padding to disable MSIE and Chrome friendly error page -->
-<!-- a padding to disable MSIE and Chrome friendly error page -->
-<!-- a padding to disable MSIE and Chrome friendly error page -->
-<!-- a padding to disable MSIE and Chrome friendly error page -->
-<!-- a padding to disable MSIE and Chrome friendly error page -->
