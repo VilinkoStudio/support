@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>功能测试</title>
+   <script src="https://cdn.tailwindcss.com"></script>
+   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+   <style>
+       body {
+           font-family: 'Noto Sans SC', sans-serif;
+           background-color: #f3f4f6;
+           background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
+           background-size: 20px 20px;
+       }
+     
+       .vui-control {
+           transition: all 0.2s ease;
+           position: relative;
+       }
+
+       .vui-control-base {
+           box-shadow: 
+               inset 0 -1px 0 0 rgba(0, 0, 0, 0.06), 
+               inset 0 -2px 0 0 rgba(0, 0, 0, 0.02);
+       }
+
+       .vui-control-primary {
+           box-shadow: 
+               inset 0 -1.5px 0 0 rgba(0, 0, 0, 0.15), 
+               inset 0 -3px 0 0 rgba(0, 0, 0, 0.05);
+       }
+
+       .vui-control:active:not(:disabled) {
+           transform: translateY(1px);
+           box-shadow: inset 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+       }
+
+       .custom-scrollbar::-webkit-scrollbar {
+           width: 6px;
+       }
+       .custom-scrollbar::-webkit-scrollbar-track {
+           background: #f1f1f1;
+       }
+       .custom-scrollbar::-webkit-scrollbar-thumb {
+           background: #d1d5db;
+           border-radius: 12px;
+       }
+       .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+           background: #9ca3af;
+       }
+
+       .checkbox-wrapper input:checked + div {
+           background-color: #5279fb;
+           border-color: #5279fb;
+       }
+       .checkbox-wrapper input:checked + div svg {
+           display: block;
+       }
+       
+       .modal-enter {
+           opacity: 0;
+           transform: scale(0.95);
+       }
+       .modal-enter-active {
+           opacity: 1;
+           transform: scale(1);
+           transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+       }
+       .modal-exit {
+           opacity: 1;
+           transform: scale(1);
+       }
+       .modal-exit-active {
+           opacity: 0;
+           transform: scale(0.95);
+           transition: opacity 0.2s ease-in, transform 0.2s ease-in;
+       }
+
+       .input-group:focus-within label {
+           color: #5279fb;
+       }
+       .input-group:focus-within input {
+           border-color: #5279fb;
+           box-shadow: 0 0 0 3px rgba(82, 121, 251, 0.1), inset 0 -2px 0 0 rgba(82, 121, 251, 0.1);
+       }
+
+       /* QQ Blocker Overlay Styles */
+       #qqBlocker {
+           position: fixed;
+           inset: 0;
+           background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+           z-index: 9999;
+           display: flex;
+           align-items: center;
+           justify-content: center;
+           padding: 20px;
+       }
+       
+       .qq-blocker-content {
+           background: white;
+           border-radius: 24px;
+           padding: 40px 32px;
+           max-width: 400px;
+           width: 100%;
+           text-align: center;
+           box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+           animation: slideUp 0.5s ease-out;
+       }
+       
+       @keyframes slideUp {
+           from {
+               opacity: 0;
+               transform: translateY(30px);
+           }
+           to {
+               opacity: 1;
+               transform: translateY(0);
+           }
+       }
+       
+       .qq-icon {
+           width: 80px;
+           height: 80px;
+           background: #f3f4f6;
+           border-radius: 50%;
+           display: flex;
+           align-items: center;
+           justify-content: center;
+           margin: 0 auto 24px;
+           position: relative;
+       }
+       
+       .qq-icon::before {
+           content: "🚫";
+           font-size: 40px;
+       }
+       
+       .qq-blocker-title {
+           font-size: 24px;
+           font-weight: 700;
+           color: #1f2937;
+           margin-bottom: 12px;
+       }
+       
+       .qq-blocker-text {
+           color: #6b7280;
+           line-height: 1.6;
+           margin-bottom: 24px;
+           font-size: 15px;
+       }
+       
+       .qq-blocker-tip {
+           background: #fef3c7;
+           border: 1px solid #fcd34d;
+           border-radius: 12px;
+           padding: 16px;
+           margin-top: 20px;
+       }
+       
+       .qq-blocker-tip-title {
+           color: #92400e;
+           font-weight: 600;
+           font-size: 14px;
+           margin-bottom: 8px;
+           display: flex;
+           align-items: center;
+           justify-content: center;
+           gap: 6px;
+       }
+       
+       .qq-blocker-tip-text {
+           color: #a16207;
+           font-size: 13px;
+           line-height: 1.5;
+       }
+       
+       .browser-icons {
+           display: flex;
+           justify-content: center;
+           gap: 16px;
+           margin-top: 12px;
+       }
+       
+       .browser-icon {
+           width: 40px;
+           height: 40px;
+           background: white;
+           border-radius: 10px;
+           display: flex;
+           align-items: center;
+           justify-content: center;
+           font-size: 20px;
+           box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+       }
+   </style>
+   
+   <!-- UA Detection Script - Runs before page load -->
+   <script>
+       (function() {
+           const ua = navigator.userAgent;
+           
+           // QQ Browser Detection Patterns
+           const isQQ = /V1_AND_SQ_|QQ\/|AppId\/537/.test(ua) || 
+                        ua.includes('MQQBrowser') || 
+                        ua.includes('QQBrowser');
+           
+           if (isQQ) {
+               document.documentElement.innerHTML = `
+                   <div id="qqBlocker">
+                       <div class="qq-blocker-content">
+                           <div class="qq-icon"></div>
+                           <h1 class="qq-blocker-title">暂时不支持在应用内打开</h1>
+                           <p class="qq-blocker-text">
+                               检测到您正在使用 QQ 内置浏览器访问，为了保证功能的正常使用，请点击右上角菜单，选择"在浏览器打开"
+                           </p>
+                           <div class="qq-blocker-tip">
+                               <div class="qq-blocker-tip-title">
+                                   <span>💡</span>
+                                   <span>推荐使用以下浏览器</span>
+                               </div>
+                               <div class="browser-icons">
+                                   <div class="browser-icon" title="Chrome">🌐</div>
+                                   <div class="browser-icon" title="Safari">🧭</div>
+                                   <div class="browser-icon" title="Edge">🌊</div>
+                                   <div class="browser-icon" title="Firefox">🦊</div>
+                               </div>
+                               <p class="qq-blocker-tip-text" style="margin-top: 12px;">
+                                   系统浏览器 · Chrome · Safari · Edge 等
+                               </p>
+                           </div>
+                       </div>
+                   </div>
+                   <style>
+                       body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; }
+                       #qqBlocker {
+                           position: fixed;
+                           inset: 0;
+                           background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                           z-index: 9999;
+                           display: flex;
+                           align-items: center;
+                           justify-content: center;
+                           padding: 20px;
+                       }
+                       .qq-blocker-content {
+                           background: white;
+                           border-radius: 24px;
+                           padding: 40px 32px;
+                           max-width: 400px;
+                           width: 100%;
+                           text-align: center;
+                           box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+                           animation: slideUp 0.5s ease-out;
+                       }
+                       @keyframes slideUp {
+                           from { opacity: 0; transform: translateY(30px); }
+                           to { opacity: 1; transform: translateY(0); }
+                       }
+                       .qq-icon {
+                           width: 80px;
+                           height: 80px;
+                           background: #f3f4f6;
+                           border-radius: 50%;
+                           display: flex;
+                           align-items: center;
+                           justify-content: center;
+                           margin: 0 auto 24px;
+                           font-size: 40px;
+                       }
+                       .qq-icon::before { content: "🚫"; }
+                       .qq-blocker-title {
+                           font-size: 24px;
+                           font-weight: 700;
+                           color: #1f2937;
+                           margin-bottom: 12px;
+                       }
+                       .qq-blocker-text {
+                           color: #6b7280;
+                           line-height: 1.6;
+                           margin-bottom: 24px;
+                           font-size: 15px;
+                       }
+                       .qq-blocker-tip {
+                           background: #fef3c7;
+                           border: 1px solid #fcd34d;
+                           border-radius: 12px;
+                           padding: 16px;
+                           margin-top: 20px;
+                       }
+                       .qq-blocker-tip-title {
+                           color: #92400e;
+                           font-weight: 600;
+                           font-size: 14px;
+                           margin-bottom: 8px;
+                           display: flex;
+                           align-items: center;
+                           justify-content: center;
+                           gap: 6px;
+                       }
+                       .qq-blocker-tip-text {
+                           color: #a16207;
+                           font-size: 13px;
+                           line-height: 1.5;
+                       }
+                       .browser-icons {
+                           display: flex;
+                           justify-content: center;
+                           gap: 16px;
+                           margin-top: 12px;
+                       }
+                       .browser-icon {
+                           width: 40px;
+                           height: 40px;
+                           background: white;
+                           border-radius: 10px;
+                           display: flex;
+                           align-items: center;
+                           justify-content: center;
+                           font-size: 20px;
+                           box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+                       }
+                   </style>
+               `;
+               throw new Error('QQ Browser blocked');
+           }
+       })();
+   </script>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4 sm:p-6">
+
+   <div class="w-full max-w-md bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100 relative">
+       
+       <div class="p-6 sm:p-8">
+           <div class="text-center mb-8">
+               <h1 class="text-2xl font-bold text-gray-800 mb-2 tracking-tight">快速反馈</h1>
+               <p class="text-sm text-gray-500 leading-relaxed">
+                   功能测试页面，<br class="sm:hidden">使用QQ打开会被拦截
+               </p>
+           </div>
+
+           <form id="feedbackForm" class="space-y-6" onsubmit="event.preventDefault();">
+               
+               <div class="input-group relative">
+                   <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1.5 ml-1">产品</label>
+                   <div onclick="openModal('product')" class="cursor-pointer group">
+                       <div id="productContainer" class="vui-control vui-control-base flex items-center justify-between w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-700 transition-all duration-200" onmouseover="this.style.borderColor='#5279fb'; this.style.backgroundColor='white'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.backgroundColor='#f9fafb'">
+                           <span id="productDisplay" class="text-gray-400 select-none">请选择产品</span>
+                           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                           </svg>
+                       </div>
+                   </div>
+                   <input type="hidden" id="productInput" required>
+               </div>
+
+               <div class="input-group">
+                   <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1.5 ml-1">版本</label>
+                   <input type="text" id="versionInput" placeholder="例如：v2.1.0" 
+                       class="vui-control vui-control-base w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-800 placeholder-gray-400 outline-none transition-all duration-200 focus:bg-white"
+                       required>
+               </div>
+
+               <div class="input-group relative">
+                   <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1.5 ml-1">触发问题时使用的设备</label>
+                   <div onclick="openModal('device')" class="cursor-pointer group">
+                       <div id="deviceContainer" class="vui-control vui-control-base flex items-center justify-between w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-700 transition-all duration-200" onmouseover="this.style.borderColor='#5279fb'; this.style.backgroundColor='white'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.backgroundColor='#f9fafb'">
+                           <span id="deviceDisplay" class="text-gray-400 select-none">请选择设备类型</span>
+                           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                           </svg>
+                       </div>
+                   </div>
+                   <input type="hidden" id="deviceInput" required>
+               </div>
+
+               <div class="flex items-start justify-center mt-6 mb-2">
+                   <label class="checkbox-wrapper flex items-center cursor-pointer group">
+                       <input type="checkbox" id="agreementCheck" class="hidden">
+                       <div class="w-5 h-5 border-2 border-gray-300 rounded flex items-center justify-center transition-colors duration-200 mr-2 bg-white" onmouseover="this.style.borderColor='#5279fb'" onmouseout="this.style.borderColor='#d1d5db'">
+                           <svg class="w-3 h-3 text-white hidden pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                       </div>
+                       <span class="text-sm text-gray-500 select-none">
+                           我已阅读并同意
+                           <a href="https://docs.vilinko.com/agreement/privacy.html" target="_blank" class="font-medium hover:underline" style="color: #5279fb;">使用协议</a>
+                       </span>
+                   </label>
+               </div>
+
+               <button type="button" id="submitBtn" onclick="handleSubmit()" disabled
+                   class="vui-control vui-control-base w-full py-3.5 px-4 text-white font-bold rounded-xl transition-all duration-300 cursor-not-allowed flex items-center justify-center space-x-2 mt-4" style="background-color: #d1d5db;">
+                   <span>确认并发送反馈</span>
+                   <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                   </svg>
+               </button>
+           </form>
+       </div>
+   </div>
+
+   <div id="selectionModal" class="fixed inset-0 z-50 hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+       <div class="fixed inset-0 bg-gray-900/60 backdrop-blur-sm transition-opacity opacity-0" id="modalBackdrop" onclick="closeModal()"></div>
+       <div class="fixed inset-0 z-10 overflow-y-auto">
+           <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+               <div id="modalPanel" class="relative transform overflow-hidden rounded-2xl bg-white text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-sm opacity-0 scale-95">
+                   <div class="bg-gray-50 px-4 py-3 sm:px-6 border-b border-gray-100 flex justify-between items-center">
+                       <h3 class="text-base font-semibold leading-6 text-gray-900" id="modalTitle">选择项目</h3>
+                       <button type="button" onclick="closeModal()" class="text-gray-400 hover:text-gray-500"><svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg></button>
+                   </div>
+                   <div class="px-2 py-2 max-h-[60vh] overflow-y-auto custom-scrollbar" id="modalList"></div>
+                   <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6 border-t border-gray-100">
+                       <button type="button" onclick="closeModal()" class="mt-3 inline-flex w-full justify-center rounded-lg bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto">取消</button>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </div>
+
+   <div id="toast" class="fixed top-4 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white px-6 py-3 rounded-full shadow-lg transition-all duration-300 opacity-0 translate-y-[-20px] pointer-events-none z-50 flex items-center space-x-2">
+       <span id="toastMsg">请完善信息</span>
+   </div>
+
+   <script>
+       const products = ["Lightframe", "网站", "vui解析器", "Universe", "其他"];
+       const devices = ["安卓-小米", "安卓-华为", "安卓-OPPO", "安卓-VIVO", "安卓-三星", "安卓-其他", "苹果", "鸿蒙NEXT-华为", "OpenHarmony", "Windows-x64", "Windows-arm64", "Linux", "MacOS"];
+
+       let currentModalType = null;
+       const modal = document.getElementById('selectionModal'), modalBackdrop = document.getElementById('modalBackdrop'), modalPanel = document.getElementById('modalPanel'), modalList = document.getElementById('modalList'), modalTitle = document.getElementById('modalTitle'), agreementCheck = document.getElementById('agreementCheck'), submitBtn = document.getElementById('submitBtn'), productInput = document.getElementById('productInput'), deviceInput = document.getElementById('deviceInput'), versionInput = document.getElementById('versionInput');
+
+       document.addEventListener('DOMContentLoaded', () => {
+           agreementCheck.addEventListener('change', toggleSubmitButton);
+           [productInput, deviceInput, versionInput].forEach(input => {
+               input.addEventListener('change', toggleSubmitButton);
+               if(input.type === 'text') input.addEventListener('input', toggleSubmitButton);
+           });
+       });
+
+       function openModal(type) {
+           currentModalType = type;
+           let list = type === 'product' ? products : devices;
+           if (type === 'device') {
+               const selectedProduct = productInput.value;
+               if (selectedProduct === 'Lightframe' || selectedProduct === 'Universe') {
+                   list = devices.filter(device => device.startsWith('Windows'));
+               }
+           }
+           modalTitle.textContent = type === 'product' ? '选择产品' : '选择设备';
+           renderList(list, type);
+           modal.classList.remove('hidden');
+           setTimeout(() => {
+               modalBackdrop.classList.remove('opacity-0');
+               modalPanel.classList.remove('opacity-0', 'scale-95');
+               modalPanel.classList.add('opacity-100', 'scale-100');
+           }, 10);
+       }
+
+       function closeModal() {
+           modalBackdrop.classList.add('opacity-0');
+           modalPanel.classList.remove('opacity-100', 'scale-100');
+           modalPanel.classList.add('opacity-0', 'scale-95');
+           setTimeout(() => { modal.classList.add('hidden'); currentModalType = null; }, 200);
+       }
+
+       function renderList(items, type) {
+           modalList.innerHTML = '';
+           items.forEach(item => {
+               const btn = document.createElement('button');
+               btn.type = 'button';
+               btn.className = "vui-control vui-control-base w-full text-left px-4 py-3 text-sm text-gray-700 rounded-lg mb-1 flex items-center hover:bg-blue-50 hover:text-blue-600 transition-colors";
+               btn.innerHTML = `<span class="w-2 h-2 rounded-full mr-3 bg-gray-300"></span>${item}`;
+               btn.onclick = () => selectItem(item, type);
+               modalList.appendChild(btn);
+           });
+       }
+
+       function selectItem(value, type) {
+           if (type === 'product') {
+               productInput.value = value;
+               const display = document.getElementById('productDisplay');
+               display.textContent = value;
+               display.className = "text-gray-800 font-medium";
+               if (value === '网站') { versionInput.value = 'web'; versionInput.disabled = true; versionInput.style.opacity = '0.6'; }
+               else { versionInput.value = ''; versionInput.disabled = false; versionInput.style.opacity = '1'; }
+           } else {
+               deviceInput.value = value;
+               const display = document.getElementById('deviceDisplay');
+               display.textContent = value;
+               display.className = "text-gray-800 font-medium";
+           }
+           closeModal();
+           toggleSubmitButton();
+       }
+
+       function toggleSubmitButton() {
+           const ok = productInput.value && deviceInput.value && versionInput.value.trim() && agreementCheck.checked;
+           if (ok) {
+               submitBtn.disabled = false;
+               submitBtn.style.backgroundColor = '#5279fb';
+               submitBtn.classList.remove('vui-control-base');
+               submitBtn.classList.add('vui-control-primary');
+               submitBtn.classList.remove('cursor-not-allowed');
+           } else {
+               submitBtn.disabled = true;
+               submitBtn.style.backgroundColor = '#d1d5db';
+               submitBtn.classList.remove('vui-control-primary');
+               submitBtn.classList.add('vui-control-base');
+               submitBtn.classList.add('cursor-not-allowed');
+           }
+       }
+
+       function showToast(message) {
+           const toast = document.getElementById('toast'), toastMsg = document.getElementById('toastMsg');
+           toastMsg.textContent = message;
+           toast.classList.remove('opacity-0', 'translate-y-[-20px]');
+           setTimeout(() => { toast.classList.add('opacity-0', 'translate-y-[-20px]'); }, 3000);
+       }
+
+       function handleSubmit() {
+           const body = encodeURIComponent(`${productInput.value}，版本为${versionInput.value}。使用${deviceInput.value}时遇到问题。\n\n请说明问题：`);
+           window.location.href = `mailto:vilinkostudio-link@qq.com?subject=用户问题反馈&body=${body}`;
+       }
+   </script>
+</body>
+</html>
