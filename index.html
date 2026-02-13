@@ -321,7 +321,7 @@
            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
            const acceptLanguage = navigator.language || navigator.userLanguage || '';
            
-           // 优先检查navigator.language
+           // 检查navigator.language
            if (acceptLanguage.includes('zh')) {
                if (acceptLanguage.includes('TW')) return 'zh-TW';
                if (acceptLanguage.includes('HK')) return 'zh-HK';
@@ -332,7 +332,7 @@
            if (acceptLanguage.includes('ru')) return 'ru';
            if (acceptLanguage.includes('en')) return 'en';
            
-           // 备用：从UA字符串检测
+           // 备用
            if (userAgent.includes('Zh-TW') || userAgent.includes('Taiwan')) return 'zh-TW';
            if (userAgent.includes('Zh-HK') || userAgent.includes('Hongkong')) return 'zh-HK';
            if (userAgent.includes('Japanese') || userAgent.includes('Japan')) return 'ja';
@@ -384,6 +384,11 @@
            // 检测语言并应用翻译
            const detectedLang = detectLanguageFromUA();
            applyTranslations(detectedLang);
+           
+           console.warn('用户完整UserAgent信息:', navigator.userAgent);
+           console.warn('浏览器语言:', navigator.language || navigator.userLanguage);
+           console.warn('设备平台:', navigator.platform);
+           console.warn('设备供应商:', navigator.vendor);
            
            document.addEventListener('keydown', function(e) {
                if ((e.ctrlKey && (e.key === 'c' || e.key === 'x' || e.key === 'v' || e.key === 'a')) || 
