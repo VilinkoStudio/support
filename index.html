@@ -146,8 +146,8 @@
 
    <div class="w-full max-w-5xl px-4">
        <div class="text-center mb-10">
-           <h1 class="text-3xl font-bold text-gray-800 mb-3 tracking-tight">Vilinko 反馈中心</h1>
-           <p class="text-sm text-gray-500 leading-relaxed max-w-xl mx-auto">
+           <h1 class="text-3xl font-bold text-gray-800 mb-3 tracking-tight" id="mainTitle">Vilinko 反馈中心</h1>
+           <p class="text-sm text-gray-500 leading-relaxed max-w-xl mx-auto" id="subTitle">
                选择以下方式获取帮助或反馈问题
            </p>
        </div>
@@ -160,8 +160,8 @@
                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                    </svg>
                </div>
-               <h3 class="text-xl font-bold text-gray-800 mb-2">查阅文档</h3>
-               <p class="text-sm text-gray-500">
+               <h3 class="text-xl font-bold text-gray-800 mb-2" id="docTitle">查阅文档</h3>
+               <p class="text-sm text-gray-500" id="docDesc">
                    浏览详细的产品文档和使用指南，快速解决常见问题
                </p>
            </div>
@@ -171,8 +171,8 @@
                <div class="w-16 h-16 rounded-full bg-green-50 flex items-center justify-center mb-5">
                    <i class="fa-brands fa-weixin text-[#22c55e] text-2xl"></i>
                </div>
-               <h3 class="text-xl font-bold text-gray-800 mb-2">微信公众号</h3>
-               <p class="text-sm text-gray-500">
+               <h3 class="text-xl font-bold text-gray-800 mb-2" id="wechatTitle">微信公众号</h3>
+               <p class="text-sm text-gray-500" id="wechatDesc">
                    关注官方公众号，获取最新资讯和人工服务支持
                </p>
            </div>
@@ -184,8 +184,8 @@
                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                    </svg>
                </div>
-               <h3 class="text-xl font-bold text-gray-800 mb-2">邮箱反馈</h3>
-               <p class="text-sm text-gray-500">
+               <h3 class="text-xl font-bold text-gray-800 mb-2" id="emailTitle">邮箱反馈</h3>
+               <p class="text-sm text-gray-500" id="emailDesc">
                    发送详细问题描述至官方邮箱
                </p>
            </div>
@@ -205,8 +205,8 @@
                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                </svg>
            </div>
-           <h3 class="text-xl font-bold text-gray-800 mb-2">服务暂时不可用</h3>
-           <p class="text-gray-500 mb-6">该服务正在维护中，请稍后再试</p>
+           <h3 class="text-xl font-bold text-gray-800 mb-2" id="modalTitle">服务暂时不可用</h3>
+           <p class="text-gray-500 mb-6" id="modalDesc">该服务正在维护中，请稍后再试</p>
            <!-- <button type="button" onclick="closeUnavailableModal()" class="inline-block px-6 py-2.5 bg-[#5279fb] text-white font-medium rounded-xl hover:bg-[#4066e0] transition-colors">
                我知道了
            </button> -->
@@ -214,6 +214,160 @@
    </div>
 
    <script>
+       // 多语言配置
+       const translations = {
+           // 简体中文
+           'zh-CN': {
+               mainTitle: 'Vilinko 反馈中心',
+               subTitle: '选择以下方式获取帮助或反馈问题',
+               docTitle: '查阅文档',
+               docDesc: '浏览详细的产品文档和使用指南，快速解决常见问题',
+               wechatTitle: '微信公众号',
+               wechatDesc: '关注官方公众号，获取最新资讯和人工服务支持',
+               emailTitle: '邮箱反馈',
+               emailDesc: '发送详细问题描述至官方邮箱',
+               modalTitle: '服务暂时不可用',
+               modalDesc: '该服务正在维护中，请稍后再试',
+               copyright: 'Copyright © {year} Vilinko Studio'
+           },
+           // 台湾繁体
+           'zh-TW': {
+               mainTitle: 'Vilinko 回饋中心',
+               subTitle: '選擇以下方式取得協助或回饋問題',
+               docTitle: '瀏覽文件',
+               docDesc: '瀏覽詳細的產品文件和使用指南，快速解決常見問題',
+               wechatTitle: '微信公眾號',
+               wechatDesc: '關注官方公眾號，取得最新資訊和人工服務支援',
+               emailTitle: '信箱回饋',
+               emailDesc: '傳送詳細問題描述至官方信箱',
+               modalTitle: '服務暫時無法使用',
+               modalDesc: '該服務正在維護中，請稍後再試',
+               copyright: 'Copyright © {year} Vilinko Studio'
+           },
+           // 港澳繁体
+           'zh-HK': {
+               mainTitle: 'Vilinko 回饋中心',
+               subTitle: '選擇以下方式獲取協助或回饋問題',
+               docTitle: '瀏覽文件',
+               docDesc: '瀏覽詳細的產品文件和使用指南，快速解決常見問題',
+               wechatTitle: '微信公眾號',
+               wechatDesc: '關注官方公眾號，獲取最新資訊和人工服務支援',
+               emailTitle: '電郵回饋',
+               emailDesc: '發送詳細問題描述至官方電郵',
+               modalTitle: '服務暫時未能使用',
+               modalDesc: '此服務正在維護中，請稍後再試',
+               copyright: 'Copyright © {year} Vilinko Studio'
+           },
+           // 英文
+           'en': {
+               mainTitle: 'Vilinko Feedback Center',
+               subTitle: 'Choose the following methods to get help or feedback issues',
+               docTitle: 'View Documentation',
+               docDesc: 'Browse detailed product documentation and usage guides to quickly solve common problems',
+               wechatTitle: 'WeChat Official Account',
+               wechatDesc: 'Follow the official account to get the latest information and manual service support',
+               emailTitle: 'Email Feedback',
+               emailDesc: 'Send a detailed problem description to the official email',
+               modalTitle: 'Service Unavailable',
+               modalDesc: 'This service is under maintenance, please try again later',
+               copyright: 'Copyright © {year} Vilinko Studio'
+           },
+           // 日文
+           'ja': {
+               mainTitle: 'Vilinko フィードバックセンター',
+               subTitle: '以下の方法でヘルプを受けたり問題をフィードバックしたりしてください',
+               docTitle: 'ドキュメントを参照',
+               docDesc: '詳細な製品ドキュメントと使用ガイドを閲覧し、一般的な問題を迅速に解決します',
+               wechatTitle: 'WeChat公式アカウント',
+               wechatDesc: '公式アカウントをフォローして、最新情報と人工サービスサポートを受け取ります',
+               emailTitle: 'メールフィードバック',
+               emailDesc: '詳細な問題の説明を公式メールアドレスに送信してください',
+               modalTitle: 'サービスは一時的に利用できません',
+               modalDesc: 'このサービスはメンテナンス中です。後でもう一度お試しください',
+               copyright: 'Copyright © {year} Vilinko Studio'
+           },
+           // 韩文
+           'ko': {
+               mainTitle: 'Vilinko 피드백 센터',
+               subTitle: '다음 방법을 선택하여 도움을 받거나 문제를 피드백하세요',
+               docTitle: '문서 보기',
+               docDesc: '자세한 제품 문서와 사용 가이드를 브라우징하여 일반적인 문제를 빠르게 해결하세요',
+               wechatTitle: '위챗 공식 계정',
+               wechatDesc: '공식 계정을 팔로우하여 최신 정보와 수동 서비스 지원을 받으세요',
+               emailTitle: '이메일 피드백',
+               emailDesc: '자세한 문제 설명을 공식 이메일로 보내주세요',
+               modalTitle: '서비스를 사용할 수 없음',
+               modalDesc: '이 서비스는 유지보수 중입니다. 나중에 다시 시도해주세요',
+               copyright: 'Copyright © {year} Vilinko Studio'
+           },
+           // 俄语
+           'ru': {
+               mainTitle: 'Центр обратной связи Vilinko',
+               subTitle: 'Выберите один из следующих способов получения помощи или отправки обратной связи',
+               docTitle: 'Просмотреть документацию',
+               docDesc: 'Изучите подробную документацию по продукту и руководства по использованию, чтобы быстро решить распространенные проблемы',
+               wechatTitle: 'Официальный аккаунт WeChat',
+               wechatDesc: 'Подпишитесь на официальный аккаунт, чтобы получать последние новости и поддержку от операторов',
+               emailTitle: 'Обратная связь по электронной почте',
+               emailDesc: 'Отправьте подробное описание проблемы на официальный адрес электронной почты',
+               modalTitle: 'Сервис временно недоступен',
+               modalDesc: 'Этот сервис находится на техническом обслуживании, пожалуйста, попробуйте позже',
+               copyright: 'Copyright © {year} Vilinko Studio'
+           }
+       };
+
+       // 从UA检测用户语言
+       function detectLanguageFromUA() {
+           const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+           const acceptLanguage = navigator.language || navigator.userLanguage || '';
+           
+           // 优先检查navigator.language
+           if (acceptLanguage.includes('zh')) {
+               if (acceptLanguage.includes('TW')) return 'zh-TW';
+               if (acceptLanguage.includes('HK')) return 'zh-HK';
+               return 'zh-CN';
+           }
+           if (acceptLanguage.includes('ja')) return 'ja';
+           if (acceptLanguage.includes('ko')) return 'ko';
+           if (acceptLanguage.includes('ru')) return 'ru';
+           if (acceptLanguage.includes('en')) return 'en';
+           
+           // 备用：从UA字符串检测
+           if (userAgent.includes('Zh-TW') || userAgent.includes('Taiwan')) return 'zh-TW';
+           if (userAgent.includes('Zh-HK') || userAgent.includes('Hongkong')) return 'zh-HK';
+           if (userAgent.includes('Japanese') || userAgent.includes('Japan')) return 'ja';
+           if (userAgent.includes('Korean') || userAgent.includes('Korea')) return 'ko';
+           if (userAgent.includes('Russian') || userAgent.includes('Russia')) return 'ru';
+           
+           // 关键修改：未识别到指定语言时默认返回英文
+           return 'en';
+       }
+
+       // 应用语言翻译
+       function applyTranslations(lang) {
+           const langKey = translations[lang] ? lang : 'en'; // 同步修改默认值为英文
+           const t = translations[langKey];
+           
+           // 设置页面文本
+           document.getElementById('mainTitle').textContent = t.mainTitle;
+           document.getElementById('subTitle').textContent = t.subTitle;
+           document.getElementById('docTitle').textContent = t.docTitle;
+           document.getElementById('docDesc').textContent = t.docDesc;
+           document.getElementById('wechatTitle').textContent = t.wechatTitle;
+           document.getElementById('wechatDesc').textContent = t.wechatDesc;
+           document.getElementById('emailTitle').textContent = t.emailTitle;
+           document.getElementById('emailDesc').textContent = t.emailDesc;
+           document.getElementById('modalTitle').textContent = t.modalTitle;
+           document.getElementById('modalDesc').textContent = t.modalDesc;
+           
+           // 设置版权信息
+           const currentYear = new Date().getFullYear();
+           document.getElementById('copyrightText').textContent = t.copyright.replace('{year}', currentYear);
+           
+           // 设置HTML lang属性
+           document.documentElement.lang = langKey;
+       }
+
        const serviceStatus = {
            docs: "run",      // 查阅文档
            wechat: "stop",   // 微信公众号
@@ -227,8 +381,9 @@
        };
 
        document.addEventListener('DOMContentLoaded', function() {
-           const currentYear = new Date().getFullYear();
-           document.getElementById('copyrightText').textContent = `Copyright © ${currentYear} Vilinko Studio`;
+           // 检测语言并应用翻译
+           const detectedLang = detectLanguageFromUA();
+           applyTranslations(detectedLang);
            
            document.addEventListener('keydown', function(e) {
                if ((e.ctrlKey && (e.key === 'c' || e.key === 'x' || e.key === 'v' || e.key === 'a')) || 
