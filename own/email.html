@@ -141,7 +141,7 @@
                    <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1.5 ml-1" id="labelProduct">产品</label>
                    <div onclick="openModal('product')" class="cursor-pointer group">
                        <div id="productContainer" class="vui-control vui-control-base flex items-center justify-between w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-700 transition-all duration-200" onmouseover="this.style.borderColor='#5279fb'; this.style.backgroundColor='white'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.backgroundColor='#f9fafb'">
-                           <span id="productDisplay" class="text-gray-400 select-none" id="placeholderProduct">请选择产品</span>
+                           <span id="productDisplay" class="text-gray-400 select-none">请选择产品</span>
                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                            </svg>
@@ -154,7 +154,6 @@
                    <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1.5 ml-1" id="labelVersion">版本</label>
                    <input type="text" id="versionInput" placeholder="例如：v2.1.0" 
                        class="vui-control vui-control-base w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-800 placeholder-gray-400 outline-none transition-all duration-200 focus:bg-white"
-                       id="placeholderVersion"
                        required>
                </div>
 
@@ -162,7 +161,7 @@
                    <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1.5 ml-1" id="labelDevice">触发问题时使用的设备</label>
                    <div onclick="openModal('device')" class="cursor-pointer group">
                        <div id="deviceContainer" class="vui-control vui-control-base flex items-center justify-between w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-700 transition-all duration-200" onmouseover="this.style.borderColor='#5279fb'; this.style.backgroundColor='white'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.backgroundColor='#f9fafb'">
-                           <span id="deviceDisplay" class="text-gray-400 select-none" id="placeholderDevice">请选择设备类型</span>
+                           <span id="deviceDisplay" class="text-gray-400 select-none">请选择设备类型</span>
                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                            </svg>
@@ -239,7 +238,8 @@
                serviceUnavailableTitle: '服务暂不可用',
                serviceUnavailableDesc: '服务维护中，请稍后再试',
                directFeedbackBtn: '直接反馈',
-               emailSubject: '用户问题反馈'
+               emailSubject: '用户问题反馈',
+               lightframeGuide: '若允许，请点击下拉菜单->高级->查看用户数据，在确定不包含隐私信息的情况下打包这些文件并上传。'
            },
            // 台湾繁体
            'zh-TW': {
@@ -260,7 +260,8 @@
                serviceUnavailableTitle: '服務暫不可用',
                serviceUnavailableDesc: '服務維護中，請稍後再試',
                directFeedbackBtn: '直接回饋',
-               emailSubject: '用戶問題回饋'
+               emailSubject: '用戶問題回饋',
+               lightframeGuide: '若允許，請點擊下拉選單->進階->查看使用者數據，在確定不包含隱私資訊的情況下打包這些檔案並上傳。'
            },
            // 港澳繁体
            'zh-HK': {
@@ -281,7 +282,8 @@
                serviceUnavailableTitle: '服務暫未能使用',
                serviceUnavailableDesc: '此服務正在維護中，請稍後再試',
                directFeedbackBtn: '直接回饋',
-               emailSubject: '用戶問題回饋'
+               emailSubject: '用戶問題回饋',
+               lightframeGuide: '若允許，請點擊下拉選單->進階->查看用戶數據，在確定不包含私隱資訊的情況下打包這些檔案並上傳。'
            },
            // 英文
            'en': {
@@ -302,7 +304,8 @@
                serviceUnavailableTitle: 'Service Unavailable',
                serviceUnavailableDesc: 'Service is under maintenance, please try again later',
                directFeedbackBtn: 'Direct Feedback',
-               emailSubject: 'User Issue Feedback'
+               emailSubject: 'User Issue Feedback',
+               lightframeGuide: 'If permitted, please click the drop-down menu->Advanced->View User Data, and package these files for upload after confirming they contain no private information.'
            },
            // 日文
            'ja': {
@@ -323,12 +326,13 @@
                serviceUnavailableTitle: 'サービスは一時的に利用できません',
                serviceUnavailableDesc: 'サービスメンテナンス中です。後でもう一度お試しください',
                directFeedbackBtn: '直接フィードバック',
-               emailSubject: 'ユーザーの問題フィードバック'
+               emailSubject: 'ユーザーの問題フィードバック',
+               lightframeGuide: '許可されている場合は、ドロップダウンメニュー->詳細設定->ユーザーデータの表示をクリックし、プライバシー情報が含まれていないことを確認した上で、これらのファイルをパッケージ化してアップロードしてください。'
            },
            // 韩文
            'ko': {
                mainTitle: '빠른 피드백',
-               subTitle: '기본 정보를 먼저 작성한 후, 이메일을 열어 피드백할 수 있습니다',
+               subTitle: '기본 정보를 먼저 작성한 후、이메일을 열어 피드백할 수 있습니다',
                labelProduct: '제품',
                placeholderProduct: '제품을 선택해주세요',
                labelVersion: '버전',
@@ -342,9 +346,10 @@
                btnCancel: '취소',
                toastMsg: '정보를 완성해주세요',
                serviceUnavailableTitle: '서비스를 사용할 수 없음',
-               serviceUnavailableDesc: '서비스 유지보수 중입니다. 나중에 다시 시도해주세요',
+               serviceUnavailableDesc: '서비스 유지보수 중입니다。나중에 다시 시도해주세요',
                directFeedbackBtn: '직접 피드백',
-               emailSubject: '사용자 문제 피드백'
+               emailSubject: '사용자 문제 피드백',
+               lightframeGuide: '허용되는 경우 드롭다운 메뉴->고급->사용자 데이터 보기를 클릭하고、개인 정보가 포함되지 않은 것을 확인한 후 해당 파일들을 패키지하여 업로드하십시오.'
            },
            // 俄语
            'ru': {
@@ -365,11 +370,11 @@
                serviceUnavailableTitle: 'Сервис временно недоступен',
                serviceUnavailableDesc: 'Сервис находится на техническом обслуживании, пожалуйста, попробуйте позже',
                directFeedbackBtn: 'Прямой отзыв',
-               emailSubject: 'Отзыв пользователя о проблеме'
+               emailSubject: 'Отзыв пользователя о проблеме',
+               lightframeGuide: 'Если разрешено, нажмите на выпадающее меню->Дополнительно->Просмотр пользовательских данных, убедитесь, что они не содержат конфиденциальную информацию, затем упакуйте эти файлы и загрузите.'
            }
        };
 
-       // 产品和设备多语言配置
        const productTranslations = {
            'zh-CN': ["Lightframe", "网站", "vui解析器", "Universe", "其他"],
            'zh-TW': ["Lightframe", "網站", "vui解析器", "Universe", "其他"],
@@ -390,25 +395,23 @@
            'ru': ["Android-Xiaomi", "Android-Huawei", "Android-OPPO", "Android-VIVO", "Android-Samsung", "Android-Другие", "Apple", "HarmonyOS NEXT-Huawei", "OpenHarmony", "Windows-x64", "Windows-arm64", "Linux", "MacOS"]
        };
 
-       // 产品名称映射
        const productToChineseMap = {
            'Lightframe': 'Lightframe',
            '网站': '网站', '網站': '网站', 'Website': '网站', 'ウェブサイト': '网站', '웹사이트': '网站', 'Веб-сайт': '网站',
-           'vui解析器': 'vui解析器', 'vui解析器': 'vui解析器', 'VUI Parser': 'vui解析器', 'VUIパーサー': 'vui解析器', 'VUI 파서': 'vui解析器', 'VUI парсер': 'vui解析器',
+           'vui解析器': 'vui解析器', 'VUI Parser': 'vui解析器', 'VUIパーサー': 'vui解析器', 'VUI 파서': 'vui解析器', 'VUI парсер': 'vui解析器',
            'Universe': 'Universe',
-           '其他': '其他', '其他': '其他', 'Others': '其他', 'その他': '其他', '기타': '其他', 'Другое': '其他'
+           '其他': '其他', 'Others': '其他', 'その他': '其他', '기타': '其他', 'Другое': '其他'
        };
 
-       // 设备名称映射
        const deviceToChineseMap = {
-           '安卓-小米': '安卓-小米', 'Android-Xiaomi': '安卓-小米', 'Android-シャオミ': '安卓-小米', 'Android-샤오미': '安卓-小米', 'Android-Xiaomi': '安卓-小米',
-           '安卓-华为': '安卓-华为', '安卓-華為': '安卓-华为', 'Android-Huawei': '安卓-华为', 'Android-ファーウェイ': '安卓-华为', 'Android-화웨이': '安卓-华为', 'Android-Huawei': '安卓-华为',
-           '安卓-OPPO': '安卓-OPPO', 'Android-OPPO': '安卓-OPPO', 'Android-OPPO': '安卓-OPPO', 'Android-OPPO': '安卓-OPPO', 'Android-OPPO': '安卓-OPPO',
-           '安卓-VIVO': '安卓-VIVO', 'Android-VIVO': '安卓-VIVO', 'Android-VIVO': '安卓-VIVO', 'Android-VIVO': '安卓-VIVO', 'Android-VIVO': '安卓-VIVO',
-           '安卓-三星': '安卓-三星', 'Android-Samsung': '安卓-三星', 'Android-サムスン': '安卓-三星', 'Android-삼성': '安卓-三星', 'Android-Samsung': '安卓-三星',
-           '安卓-其他': '安卓-其他', '安卓-其他': '安卓-其他', 'Android-Others': '安卓-其他', 'Android-その他': '安卓-其他', 'Android-기타': '安卓-其他', 'Android-Другие': '安卓-其他',
-           '苹果': '苹果', '蘋果': '苹果', 'Apple': '苹果', 'Apple': '苹果', 'Apple': '苹果', 'Apple': '苹果',
-           '鸿蒙NEXT-华为': '鸿蒙NEXT-华为', '鸿蒙NEXT-華為': '鸿蒙NEXT-华为', 'HarmonyOS NEXT-Huawei': '鸿蒙NEXT-华为', 'HarmonyOS NEXT-ファーウェイ': '鸿蒙NEXT-华为', 'HarmonyOS NEXT-화웨이': '鸿蒙NEXT-华为', 'HarmonyOS NEXT-Huawei': '鸿蒙NEXT-华为',
+           '安卓-小米': '安卓-小米', 'Android-Xiaomi': '安卓-小米', 'Android-シャオミ': '安卓-小米', 'Android-샤오미': '安卓-小米',
+           '安卓-华为': '安卓-华为', '安卓-華為': '安卓-华为', 'Android-Huawei': '安卓-华为', 'Android-ファーウェイ': '安卓-华为', 'Android-화웨이': '安卓-华为',
+           '安卓-OPPO': '安卓-OPPO', 'Android-OPPO': '安卓-OPPO',
+           '安卓-VIVO': '安卓-VIVO', 'Android-VIVO': '安卓-VIVO',
+           '安卓-三星': '安卓-三星', 'Android-Samsung': '安卓-三星', 'Android-サムスン': '安卓-三星', 'Android-삼성': '安卓-三星',
+           '安卓-其他': '安卓-其他', 'Android-Others': '安卓-其他', 'Android-その他': '安卓-其他', 'Android-기타': '安卓-其他', 'Android-Другие': '安卓-其他',
+           '苹果': '苹果', '蘋果': '苹果', 'Apple': '苹果',
+           '鸿蒙NEXT-华为': '鸿蒙NEXT-华为', '鸿蒙NEXT-華為': '鸿蒙NEXT-华为', 'HarmonyOS NEXT-Huawei': '鸿蒙NEXT-华为', 'HarmonyOS NEXT-ファーウェイ': '鸿蒙NEXT-华为', 'HarmonyOS NEXT-화웨이': '鸿蒙NEXT-华为',
            'OpenHarmony': 'OpenHarmony',
            'Windows-x64': 'Windows-x64',
            'Windows-arm64': 'Windows-arm64',
@@ -416,12 +419,72 @@
            'MacOS': 'MacOS'
        };
 
-       // 从UA检测用户语言
+       const productKeywordMap = {
+           'zh-CN': {
+               'Lightframe': 'Lightframe',
+               '网站': 'Website',
+               'vui解析器': 'VUI Parser',
+               'Universe': 'Universe',
+               '其他': 'Others'
+           },
+           'zh-TW': {
+               'Lightframe': 'Lightframe',
+               '網站': 'Website',
+               'vui解析器': 'VUI Parser',
+               'Universe': 'Universe',
+               '其他': 'Others'
+           },
+           'zh-HK': {
+               'Lightframe': 'Lightframe',
+               '網站': 'Website',
+               'vui解析器': 'VUI Parser',
+               'Universe': 'Universe',
+               '其他': 'Others'
+           },
+           'en': {
+               'Lightframe': 'Lightframe',
+               'Website': 'Website',
+               'VUI Parser': 'VUI Parser',
+               'Universe': 'Universe',
+               'Others': 'Others'
+           },
+           'ja': {
+               'Lightframe': 'Lightframe',
+               'ウェブサイト': 'Website',
+               'VUIパーサー': 'VUI Parser',
+               'Universe': 'Universe',
+               'その他': 'Others'
+           },
+           'ko': {
+               'Lightframe': 'Lightframe',
+               '웹사이트': 'Website',
+               'VUI 파서': 'VUI Parser',
+               'Universe': 'Universe',
+               '기타': 'Others'
+           },
+           'ru': {
+               'Lightframe': 'Lightframe',
+               'Веб-сайт': 'Website',
+               'VUI парсер': 'VUI Parser',
+               'Universe': 'Universe',
+               'Другое': 'Others'
+           }
+       };
+
+       const webProductKeywords = {
+           'zh-CN': ['网站'],
+           'zh-TW': ['網站'],
+           'zh-HK': ['網站'],
+           'en': ['Website'],
+           'ja': ['ウェブサイト'],
+           'ko': ['웹사이트'],
+           'ru': ['Веб-сайт']
+       };
+
        function detectLanguageFromUA() {
            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
            const acceptLanguage = navigator.language || navigator.userLanguage || '';
            
-           // 优先检查navigator.language
            if (acceptLanguage.includes('zh')) {
                if (acceptLanguage.includes('TW')) return 'zh-TW';
                if (acceptLanguage.includes('HK')) return 'zh-HK';
@@ -431,48 +494,41 @@
            if (acceptLanguage.includes('ko')) return 'ko';
            if (acceptLanguage.includes('ru')) return 'ru';
            if (acceptLanguage.includes('en')) return 'en';
-           
-           // 备用
            if (userAgent.includes('Zh-TW') || userAgent.includes('Taiwan')) return 'zh-TW';
            if (userAgent.includes('Zh-HK') || userAgent.includes('Hongkong')) return 'zh-HK';
            if (userAgent.includes('Japanese') || userAgent.includes('Japan')) return 'ja';
            if (userAgent.includes('Korean') || userAgent.includes('Korea')) return 'ko';
            if (userAgent.includes('Russian') || userAgent.includes('Russia')) return 'ru';
            
-           // 未识别到指定语言时默认返回英文
            return 'en';
        }
 
-       // 应用语言翻译
        function applyTranslations(lang) {
            const langKey = translations[lang] ? lang : 'en';
            const t = translations[langKey];
            
            document.getElementById('mainTitle').textContent = t.mainTitle;
-           document.getElementById('subTitle').innerHTML = t.subTitle.replace('，', '，<br class="sm:hidden">');
+           document.getElementById('subTitle').innerHTML = t.subTitle.replace('，', '，<br class="sm:hidden">').replace('. ', '.<br class="sm:hidden">');
            document.getElementById('labelProduct').textContent = t.labelProduct;
-           document.getElementById('placeholderProduct').textContent = t.placeholderProduct;
+           document.getElementById('productDisplay').textContent = t.placeholderProduct;
            document.getElementById('labelVersion').textContent = t.labelVersion;
            document.getElementById('versionInput').placeholder = t.placeholderVersion;
            document.getElementById('labelDevice').textContent = t.labelDevice;
-           document.getElementById('placeholderDevice').textContent = t.placeholderDevice;
+           document.getElementById('deviceDisplay').textContent = t.placeholderDevice;
            document.getElementById('agreementText').innerHTML = t.agreementText;
            document.getElementById('btnSubmit').textContent = t.btnSubmit;
            document.getElementById('modalTitle').textContent = t.modalTitleProduct;
            document.getElementById('btnCancel').textContent = t.btnCancel;
            document.getElementById('toastMsg').textContent = t.toastMsg;
            
-           // 设置HTML lang属性
            document.documentElement.lang = langKey;
            
-           // 保存当前语言供后续使用
            window.currentLang = langKey;
        }
 
        const serviceStatus = "run"; // Service
        
        document.addEventListener('DOMContentLoaded', function() {
-           // 检测并应用语言
            const detectedLang = detectLanguageFromUA();
            applyTranslations(detectedLang);
            
@@ -543,20 +599,16 @@
            function openModal(type) {
                currentModalType = type;
                const lang = window.currentLang || 'en';
-               let list = type === 'product' ? productTranslations[lang] : deviceTranslations[lang];
                
-               if (type === 'device') {
-                   const selectedProduct = productInput.value;
-                   const productMap = {
-                       '网站': 'Website', '網站': 'Website', 'ウェブサイト': 'Website', '웹사이트': 'Website', 'Веб-сайт': 'Website',
-                       'Lightframe': 'Lightframe', 'vui解析器': 'VUI Parser', 'vui解析器': 'VUI Parser', 'VUIパーサー': 'VUI Parser', 
-                       'VUI 파서': 'VUI Parser', 'VUI парсер': 'VUI Parser', 'Universe': 'Universe', '其他': 'Others', 
-                       '其他': 'Others', 'その他': 'Others', '기타': '기타', 'Другое': 'Другое'
-                   };
-                   const originalProduct = productMap[selectedProduct] || selectedProduct;
+               let list = type === 'product' 
+                   ? (productTranslations[lang] || productTranslations['en']) 
+                   : (deviceTranslations[lang] || deviceTranslations['en']);
+               
+               if (type === 'device' && productInput.value) {
+                   const langMap = productKeywordMap[lang] || productKeywordMap['en'];
+                   const originalProduct = langMap[productInput.value] || productInput.value;
                    
                    if (originalProduct === 'Lightframe' || originalProduct === 'Universe') {
-                       // 过滤出Windows设备
                        const windowsKeywords = ['Windows-x64', 'Windows-arm64'];
                        list = list.filter(device => {
                            return windowsKeywords.some(keyword => device.includes(keyword));
@@ -564,8 +616,7 @@
                    }
                }
                
-               // 设置模态框标题
-               const t = translations[window.currentLang || 'en'];
+               const t = translations[lang || 'en'];
                modalTitle.textContent = type === 'product' ? t.modalTitleProduct : t.modalTitleDevice;
                
                renderList(list, type);
@@ -597,17 +648,19 @@
            }
 
            function selectItem(value, type) {
+               const lang = window.currentLang || 'zh-CN';
+               const t = translations[lang];
+               
                if (type === 'product') {
                    productInput.value = value;
                    const display = document.getElementById('productDisplay');
                    display.textContent = value;
                    display.className = "text-gray-800 font-medium";
                    
-                   const lang = window.currentLang || 'en';
-                   const t = translations[lang];
-                   const webKeywords = ['网站', '網站', 'Website', 'ウェブサイト', '웹사이트', 'Веб-сайт'];
+                   const keywords = webProductKeywords[lang] || webProductKeywords['en'];
+                   const isWebProduct = keywords.some(keyword => value.includes(keyword));
                    
-                   if (webKeywords.some(keyword => value.includes(keyword))) {
+                   if (isWebProduct) {
                        versionInput.value = 'web'; 
                        versionInput.disabled = true; 
                        versionInput.style.opacity = '0.6'; 
@@ -657,10 +710,23 @@
                const productChinese = productToChineseMap[productInput.value] || productInput.value;
                const deviceChinese = deviceToChineseMap[deviceInput.value] || deviceInput.value;
                
-               const emailBodyTemplate = `语言版本：{lang}
+               let emailBodyTemplate = `语言版本：{lang}
 {product}，版本为{version}。使用{device}时遇到问题。
 
 请说明问题：`;
+               
+               const isLightframe = productInput.value.toLowerCase() === 'lightframe';
+               if (isLightframe) {
+                   const t = translations[currentLang];
+                   const guideText = t.lightframeGuide || translations['en'].lightframeGuide;
+                   
+                   emailBodyTemplate = `语言版本：{lang}
+{product}，版本为{version}。使用{device}时遇到问题。
+
+${guideText}
+
+请说明问题：`;
+               }
                
                const bodyContent = emailBodyTemplate
                    .replace('{lang}', currentLang)
@@ -668,7 +734,7 @@
                    .replace('{version}', versionInput.value)
                    .replace('{device}', deviceChinese);
                
-               const t = translations[window.currentLang || 'zh-CN'];
+               const t = translations[currentLang];
                const subject = encodeURIComponent(t.emailSubject);
                const body = encodeURIComponent(bodyContent);
                
